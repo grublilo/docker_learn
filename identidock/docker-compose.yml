@@ -2,6 +2,8 @@ version: "2.4"
 services:
   dnmonster:
     image: amouat/dnmonster:1.0
+  redis:
+    image: redis
   proxy:
     build: .
     image: leroyweb:latest
@@ -22,4 +24,5 @@ services:
         target: /app
     links:
       - "dnmonster"
+      - "redis"
       
