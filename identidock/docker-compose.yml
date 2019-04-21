@@ -1,0 +1,25 @@
+version: "2.4"
+services:
+  dnmonster:
+    image: amouat/dnmonster:1.0
+  proxy:
+    build: .
+    image: leroyweb:latest
+    networks:
+      - default
+    expose:
+     - "9191"
+     - "9090"
+    environment:  
+      ENV: DEV 
+    ports:
+      - "9191:9191"
+      - "9090:9090"
+      - "5000:5000"  
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    links:
+      - "dnmonster"
+      
